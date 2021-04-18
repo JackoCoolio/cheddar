@@ -1,8 +1,11 @@
+#ifndef MOVE_H
+#define MOVE_H
+
 /**
  * Adapted from https://www.chessprogramming.org/Encoding_Moves
  */
 
-#include <core.h>
+#include "core.h"
 
 CHEDDAR_START
 
@@ -96,3 +99,5 @@ protected:
 };
 
 CHEDDAR_END
+
+#endif
