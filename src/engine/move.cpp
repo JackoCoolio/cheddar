@@ -44,7 +44,7 @@ void Move::set_from(unsigned int from) {
 }
 
 bool Move::is_capture() const {
-    return (CAPTURE_FLAG & m_move) != 0;
+    return (0x4000 & m_move) != 0;
 }
 
 unsigned int Move::get_butterfly_index() const {
