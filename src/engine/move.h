@@ -10,6 +10,20 @@ class Move {
 
 public:
 
+    enum Flags {
+        QUIET = 0x0,
+        CAPTURE = 0x4,
+        PROMOTION = 0x8,
+        DOUBLE_PAWN_PUSH = 0x1,
+        KING_CASTLE = 0x2,
+        QUEEN_CASTLE = 0x3,
+        EN_PASSANT = 0x1,
+        KNIGHT_PROMOTION = 0x0,
+        BISHOP_PROMOTION = 0x1,
+        ROOK_PROMOTION = 0x2,
+        QUEEN_PROMOTION = 0x3
+    };
+
     /**
      * Constructs a move from the specified TO square to the specified FROM square with flags.
      *
