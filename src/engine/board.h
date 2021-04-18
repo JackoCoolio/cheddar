@@ -1,3 +1,7 @@
+#include <core.h>
+
+CHEDDAR_START
+
 typedef unsigned long long U64;
 
 typedef struct Position {
@@ -29,3 +33,5 @@ inline U64 get_white_pieces(Position &pos) {
 inline U64 get_black_pieces(Position &pos) {
     return pos.blackPawns | pos.blackKnights | pos.blackBishops | pos.blackRooks | pos.blackQueens | pos.blackKing;
 }
+
+CHEDDAR_END
