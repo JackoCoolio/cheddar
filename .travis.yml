@@ -1,0 +1,8 @@
+language: cpp
+compiler: gcc
+script:
+  - mkdir -p build
+  - cmake . -B build
+  - cmake --build build --target cheddar_test
+  - cmake --build build --target install
+  - ./bin/cheddar_test
