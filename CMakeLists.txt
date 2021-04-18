@@ -18,3 +18,4 @@ include_directories(${CHEDDAR_INSTALL_INCLUDE_DIR})
 include_directories(${ENGINE_HEADERS_DIR})
 
 add_subdirectory(src)
+add_subdirectory(test)
