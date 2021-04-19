@@ -37,15 +37,15 @@ typedef struct Position {
 } Position;
 
 inline void set_bit(BitBoard &board, unsigned int index) {
-    board |= 0x8000000000000000 >> index;
+    board |= 0x1ULL << index;
 }
 
 inline void clear_bit(BitBoard &board, unsigned int index) {
-    board &= ~(0x8000000000000000 >> index);
+    board &= ~(0x1ULL << index);
 }
 
 inline unsigned int get_bit(const BitBoard board, unsigned int index) {
-    return (0x8000000000000000 >> index) & board != 0;
+    return (board >> index) & 1ULL;
 }
 
 std::bitset<64> get_bits(const BitBoard board);
@@ -74,13 +74,6 @@ inline BitBoard get_black_pieces(const Position pos) {
     return pos.blackPawns | pos.blackKnights | pos.blackBishops | pos.blackRooks | pos.blackQueens | pos.blackKing;
 }
 
-inline BitBoard get_white_pawn_starts() {
-    return 0xffffULL << 48;
-}
-
-inline BitBoard get_black_pawn_starts() {
-    return 0xffffULL << 8;
-}
 
 Position from_fen(std::string fen);
 

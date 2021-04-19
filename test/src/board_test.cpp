@@ -1,27 +1,27 @@
 #include <gtest/gtest.h>
 #include <iostream>
 
+#include "test_util.h"
 #include "board.h"
 #include "util.h"
 
 using namespace Cheddar;
 
 TEST(Board, standard_fen) {
-    Position pos = from_fen("rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1");
+    Position pos = from_fen(STANDARD_FEN);
 
     // test white
-    ASSERT_STREQ(get_bits(pos.whitePawns).to_string().c_str(), "0000000011111111000000000000000000000000000000000000000000000000");
-    ASSERT_STREQ(get_bits(pos.whiteKnights).to_string().c_str(), "0100001000000000000000000000000000000000000000000000000000000000");
-    ASSERT_STREQ(get_bits(pos.whiteBishops).to_string().c_str(), "0010010000000000000000000000000000000000000000000000000000000000");
-    ASSERT_STREQ(get_bits(pos.whiteRooks).to_string().c_str(), "1000000100000000000000000000000000000000000000000000000000000000");
-    ASSERT_STREQ(get_bits(pos.whiteQueens).to_string().c_str(), "0001000000000000000000000000000000000000000000000000000000000000");
-    ASSERT_STREQ(get_bits(pos.whiteKing).to_string().c_str(), "0000100000000000000000000000000000000000000000000000000000000000");
+    ASSERT_EQ(pos.whitePawns,   0x000000000000ff00);
+    ASSERT_EQ(pos.whiteKnights, 0x0000000000000042);
+    ASSERT_EQ(pos.whiteBishops, 0x0000000000000024);
+    ASSERT_EQ(pos.whiteRooks,   0x0000000000000081);
+    ASSERT_EQ(pos.whiteQueens,  0x0000000000000008);
+    ASSERT_EQ(pos.whiteKing,    0x0000000000000010);
 
-    // test black
-    ASSERT_STREQ(get_bits(pos.blackPawns).to_string().c_str(), "0000000000000000000000000000000000000000000000001111111100000000");
-    ASSERT_STREQ(get_bits(pos.blackKnights).to_string().c_str(), "0000000000000000000000000000000000000000000000000000000001000010");
-    ASSERT_STREQ(get_bits(pos.blackBishops).to_string().c_str(), "0000000000000000000000000000000000000000000000000000000000100100");
-    ASSERT_STREQ(get_bits(pos.blackRooks).to_string().c_str(), "0000000000000000000000000000000000000000000000000000000010000001");
-    ASSERT_STREQ(get_bits(pos.blackQueens).to_string().c_str(), "0000000000000000000000000000000000000000000000000000000000010000");
-    ASSERT_STREQ(get_bits(pos.blackKing).to_string().c_str(), "0000000000000000000000000000000000000000000000000000000000001000");
+    ASSERT_EQ(pos.blackPawns,   0x00ff000000000000);
+    ASSERT_EQ(pos.blackKnights, 0x4200000000000000);
+    ASSERT_EQ(pos.blackBishops, 0x2400000000000000);
+    ASSERT_EQ(pos.blackRooks,   0x8100000000000000);
+    ASSERT_EQ(pos.blackQueens,  0x0800000000000000);
+    ASSERT_EQ(pos.blackKing,    0x1000000000000000);
 }

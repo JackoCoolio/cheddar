@@ -8,18 +8,20 @@ std::bitset<64> get_bits(const BitBoard board) {
 }
 
 std::string bb_to_string(const BitBoard board) {
-    std::bitset<64> bits(board);
-    std::string bits_str = bits.to_string();
     std::string out = "";
     std::string row = "";
     for (int i = 63; i >= 0; i--) {
-        row = bits_str.at(i) + row;
-        row = ' ' + row;
+        unsigned int bit = get_bit(board, i);
+
+        char c = '0' + bit;
+        row = c + row;
+
         if (i % 8 == 0) {
-            out += row + "\n";
+            out += row + '\n';
             row.clear();
         }
     }
+
     return out;
 }
 
