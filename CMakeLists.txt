@@ -14,7 +14,6 @@ set(CHEDDAR_INSTALL_LIB_DIR ${PROJECT_SOURCE_DIR}/lib)
 
 set(ENGINE_HEADERS_DIR ${PROJECT_SOURCE_DIR}/src/engine)
 
-include_directories(${CHEDDAR_INSTALL_INCLUDE_DIR})
 include_directories(${ENGINE_HEADERS_DIR})
 
 add_subdirectory(src)
