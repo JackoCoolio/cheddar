@@ -6,6 +6,7 @@ set(SOURCE
     main.cpp
     src/move_test.cpp
     src/gen_test.cpp
+    src/board_test.cpp
 )
 
 include_directories(${CHEDDAR_HEADERS_DIR})

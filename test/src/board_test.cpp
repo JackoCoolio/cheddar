@@ -1,0 +1,27 @@
+#include <gtest/gtest.h>
+#include <iostream>
+
+#include "board.h"
+#include "util.h"
+
+using namespace Cheddar;
+
+TEST(Board, standard_fen) {
+    Position pos = from_fen("rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1");
+
+    // test white
+    ASSERT_STREQ(get_bits(pos.whitePawns).to_string().c_str(), "0000000011111111000000000000000000000000000000000000000000000000");
+    ASSERT_STREQ(get_bits(pos.whiteKnights).to_string().c_str(), "0100001000000000000000000000000000000000000000000000000000000000");
+    ASSERT_STREQ(get_bits(pos.whiteBishops).to_string().c_str(), "0010010000000000000000000000000000000000000000000000000000000000");
+    ASSERT_STREQ(get_bits(pos.whiteRooks).to_string().c_str(), "1000000100000000000000000000000000000000000000000000000000000000");
+    ASSERT_STREQ(get_bits(pos.whiteQueens).to_string().c_str(), "0001000000000000000000000000000000000000000000000000000000000000");
+    ASSERT_STREQ(get_bits(pos.whiteKing).to_string().c_str(), "0000100000000000000000000000000000000000000000000000000000000000");
+
+    // test black
+    ASSERT_STREQ(get_bits(pos.blackPawns).to_string().c_str(), "0000000000000000000000000000000000000000000000001111111100000000");
+    ASSERT_STREQ(get_bits(pos.blackKnights).to_string().c_str(), "0000000000000000000000000000000000000000000000000000000001000010");
+    ASSERT_STREQ(get_bits(pos.blackBishops).to_string().c_str(), "0000000000000000000000000000000000000000000000000000000000100100");
+    ASSERT_STREQ(get_bits(pos.blackRooks).to_string().c_str(), "0000000000000000000000000000000000000000000000000000000010000001");
+    ASSERT_STREQ(get_bits(pos.blackQueens).to_string().c_str(), "0000000000000000000000000000000000000000000000000000000000010000");
+    ASSERT_STREQ(get_bits(pos.blackKing).to_string().c_str(), "0000000000000000000000000000000000000000000000000000000000001000");
+}
