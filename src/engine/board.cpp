@@ -13,8 +13,8 @@ std::string bb_to_string(const BitBoard board) {
     for (int i = 63; i >= 0; i--) {
         unsigned int bit = get_bit(board, i);
 
-        char c = '0' + bit;
-        row = c + row;
+        char c = bit ? 'x' : '-';
+        row = c + (" " + row);
 
         if (i % 8 == 0) {
             out += row + '\n';
