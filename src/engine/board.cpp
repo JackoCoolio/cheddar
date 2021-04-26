@@ -33,8 +33,10 @@ unsigned int fen_to_bb_index(int i, int skip_offset) {
 
 Position from_fen(std::string fen) {
     Position pos = {}; // set to zero
+    pos.enPassant = 64;
     int stage = 0;
     int skip_offset = 0;
+    int ep_file = -1;
     for (int i = 0; i < fen.length(); i++) {
         char c = fen.at(i);
 
@@ -84,13 +86,33 @@ Position from_fen(std::string fen) {
                 } else {
                     pos.turn = White;
                 }
+            } else if (stage == 2) {
+                // castling
+            } else if (stage == 3) {
+                if (c == '-') continue;
+
+                if (isalpha(c) && ep_file == -1) {
+                    ep_file = tolower(c) - 'a';
+                } else if (isdigit(c)) {
+                    pos.enPassant = (c - '1') * 8 + ep_file;
+                }
             }
 
-            // worry about castles and en passant later
         }
     }
 
     return pos;
+}
+
+unsigned int alg_to_index(const std::string alg) {
+    if (alg.size() != 2) {
+        return 64;
+    }
+
+    int file = tolower(alg.at(0)) - 'a';
+    int rank = alg.at(1) - '1';
+
+    return  rank * 8 + file;
 }
 
 CHEDDAR_END

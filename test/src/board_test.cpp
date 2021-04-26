@@ -24,4 +24,17 @@ TEST(Board, standard_fen) {
     ASSERT_EQ(pos.blackRooks,   0x8100000000000000);
     ASSERT_EQ(pos.blackQueens,  0x0800000000000000);
     ASSERT_EQ(pos.blackKing,    0x1000000000000000);
+
+    ASSERT_EQ(pos.enPassant, 64);
+
+    pos = from_fen("rnbqkbnr/pppppppp/8/8/4P3/8/PPPP1PPP/RNBQKBNR b KQkq e3 0 1");
+    ASSERT_EQ(pos.enPassant, 20);
+}
+
+TEST(Board, alg_to_index) {
+    ASSERT_EQ(alg_to_index("a1"), 0);
+    ASSERT_EQ(alg_to_index("a8"), 56);
+    ASSERT_EQ(alg_to_index("h8"), 63);
+    ASSERT_EQ(alg_to_index("h1"), 7);
+    ASSERT_EQ(alg_to_index("-"), 64); // invalid index
 }

@@ -33,7 +33,7 @@ typedef struct Position {
     BitBoard blackQueens;
     BitBoard blackKing;
 
-    BitBoard enPassantSquare;
+    unsigned int enPassant;
     unsigned int castles;
     Color turn;
 } Position;
@@ -88,6 +88,8 @@ inline BitBoard get_all_pieces(Position pos) {
 }
 
 Position from_fen(std::string fen);
+
+unsigned int alg_to_index(const std::string alg);
 
 CHEDDAR_END
 
