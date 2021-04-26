@@ -26,8 +26,8 @@ BitBoard north_occl(const BitBoard board, const BitBoard open) {
     return gen;
 }
 
-BitBoard north_one(const BitBoard board, const BitBoard open) {
-    return open & (board << 8);
+BitBoard north_one(const BitBoard board) {
+    return (board << 8);
 }
 
 BitBoard south_occl(const BitBoard board, const BitBoard open) {
@@ -38,8 +38,8 @@ BitBoard south_occl(const BitBoard board, const BitBoard open) {
     return gen;
 }
 
-BitBoard south_one(const BitBoard board, const BitBoard open) {
-    return open & (board >> 8);
+BitBoard south_one(const BitBoard board) {
+    return (board >> 8);
 }
 
 BitBoard east_occl(const BitBoard board, const BitBoard open) {
@@ -50,8 +50,8 @@ BitBoard east_occl(const BitBoard board, const BitBoard open) {
     return gen;
 }
 
-BitBoard east_one(const BitBoard board, const BitBoard open) {
-    return (open & ~A_FILE) & (board << 1);
+BitBoard east_one(const BitBoard board) {
+    return ~A_FILE & (board << 1);
 }
 
 BitBoard west_occl(const BitBoard board, const BitBoard open) {
@@ -62,8 +62,8 @@ BitBoard west_occl(const BitBoard board, const BitBoard open) {
     return gen;
 }
 
-BitBoard west_one(const BitBoard board, const BitBoard open) {
-    return (open & ~H_FILE) & (board >> 1);
+BitBoard west_one(const BitBoard board) {
+    return ~H_FILE & (board >> 1);
 }
 
 BitBoard ne_occl(const BitBoard board, const BitBoard open) {
@@ -74,8 +74,8 @@ BitBoard ne_occl(const BitBoard board, const BitBoard open) {
     return gen;
 }
 
-BitBoard ne_one(const BitBoard board, const BitBoard open) {
-    return (open & ~A_FILE) & (board << 9);
+BitBoard ne_one(const BitBoard board) {
+    return ~A_FILE & (board << 9);
 }
 
 BitBoard se_occl(const BitBoard board, const BitBoard open) {
@@ -86,8 +86,8 @@ BitBoard se_occl(const BitBoard board, const BitBoard open) {
     return gen;
 }
 
-BitBoard se_one(const BitBoard board, const BitBoard open) {
-    return (open & ~A_FILE) & (board >> 7);
+BitBoard se_one(const BitBoard board) {
+    return ~A_FILE & (board >> 7);
 }
 
 BitBoard sw_occl(const BitBoard board, const BitBoard open) {
@@ -98,8 +98,8 @@ BitBoard sw_occl(const BitBoard board, const BitBoard open) {
     return gen;
 }
 
-BitBoard sw_one(const BitBoard board, const BitBoard open) {
-    return (open & ~H_FILE) & (board >> 9);
+BitBoard sw_one(const BitBoard board) {
+    return ~H_FILE & (board >> 9);
 }
 
 BitBoard nw_occl(const BitBoard board, const BitBoard open) {
@@ -110,13 +110,13 @@ BitBoard nw_occl(const BitBoard board, const BitBoard open) {
     return gen;
 }
 
-BitBoard nw_one(const BitBoard board, const BitBoard open) {
-    return (open & ~H_FILE) & (board << 7);
+BitBoard nw_one(const BitBoard board) {
+    return ~H_FILE & (board << 7);
 }
 
 BitBoard king_fill(const BitBoard king) {
-    BitBoard out = (king | east_one(king, ~EMPTY_BOARD) | west_one(king, ~EMPTY_BOARD));
-    out |= north_one(out, ~EMPTY_BOARD) | south_one(out, ~EMPTY_BOARD);
+    BitBoard out = king | east_one(king) | west_one(king);
+    out |= north_one(out) | south_one(out);
 
     // Note: kings defending each other won't be included in this fill,
     // but that's impossible, so...

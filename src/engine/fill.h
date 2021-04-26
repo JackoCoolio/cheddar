@@ -16,56 +16,56 @@ constexpr BitBoard H_FILE       = 0x8080808080808080;
 constexpr BitBoard FIRST_RANK   = 0x00000000000000ff;
 constexpr BitBoard EIGHTH_RANK  = 0xff00000000000000;
 
-#define north_attacks(board, open) Cheddar::north_one(Cheddar::north_occl(board, open), ~0ULL)
-#define east_attacks(board, open) Cheddar::east_one(Cheddar::east_occl(board, open), ~0ULL)
-#define south_attacks(board, open) Cheddar::south_one(Cheddar::south_occl(board, open), ~0ULL)
-#define west_attacks(board, open) Cheddar::west_one(Cheddar::west_occl(board, open), ~0ULL)
-#define ne_attacks(board, open) Cheddar::ne_one(Cheddar::ne_occl(board, open), ~0ULL)
-#define se_attacks(board, open) Cheddar::se_one(Cheddar::se_occl(board, open), ~0ULL)
-#define sw_attacks(board, open) Cheddar::sw_one(Cheddar::sw_occl(board, open), ~0ULL)
-#define nw_attacks(board, open) Cheddar::nw_one(Cheddar::nw_occl(board, open), ~0ULL)
-#define north_pawn_attacks(board) (Cheddar::nw_one(board, 0) | Cheddar::ne_one(board, 0))
-#define south_pawn_attacks(board) (Cheddar::sw_one(board, 0) | Cheddar::se_one(board, 0))
+#define north_attacks(board, open) Cheddar::north_one(Cheddar::north_occl(board, open))
+#define east_attacks(board, open) Cheddar::east_one(Cheddar::east_occl(board, open))
+#define south_attacks(board, open) Cheddar::south_one(Cheddar::south_occl(board, open))
+#define west_attacks(board, open) Cheddar::west_one(Cheddar::west_occl(board, open))
+#define ne_attacks(board, open) Cheddar::ne_one(Cheddar::ne_occl(board, open))
+#define se_attacks(board, open) Cheddar::se_one(Cheddar::se_occl(board, open))
+#define sw_attacks(board, open) Cheddar::sw_one(Cheddar::sw_occl(board, open))
+#define nw_attacks(board, open) Cheddar::nw_one(Cheddar::nw_occl(board, open))
+#define north_pawn_attacks(board) (Cheddar::nw_one(board) | Cheddar::ne_one(board))
+#define south_pawn_attacks(board) (Cheddar::sw_one(board) | Cheddar::se_one(board))
 
 // NORTH
 
 BitBoard north_occl(const BitBoard board, const BitBoard open);
-BitBoard north_one(const BitBoard board, const BitBoard open);
+BitBoard north_one(const BitBoard board);
 
 // SOUTH
 
 BitBoard south_occl(const BitBoard board, const BitBoard open);
-BitBoard south_one(const BitBoard board, const BitBoard open);
+BitBoard south_one(const BitBoard board);
 
 // EAST
 
 BitBoard east_occl(const BitBoard board, const BitBoard open);
-BitBoard east_one(const BitBoard board, const BitBoard open);
+BitBoard east_one(const BitBoard board);
 
 // WEST
 
 BitBoard west_occl(const BitBoard board, const BitBoard open);
-BitBoard west_one(const BitBoard board, const BitBoard open);
+BitBoard west_one(const BitBoard board);
 
 // NORTH EAST
 
 BitBoard ne_occl(const BitBoard board, const BitBoard open);
-BitBoard ne_one(const BitBoard board, const BitBoard open);
+BitBoard ne_one(const BitBoard board);
 
 // SOUTH EAST
 
 BitBoard se_occl(const BitBoard board, const BitBoard open);
-BitBoard se_one(const BitBoard board, const BitBoard open);
+BitBoard se_one(const BitBoard board);
 
 // SOUTH WEST
 
 BitBoard sw_occl(const BitBoard board, const BitBoard open);
-BitBoard sw_one(const BitBoard board, const BitBoard open);
+BitBoard sw_one(const BitBoard board);
 
 // NORTH WEST
 
 BitBoard nw_occl(const BitBoard board, const BitBoard open);
-BitBoard nw_one(const BitBoard board, const BitBoard open);
+BitBoard nw_one(const BitBoard board);
 
 // KNIGHT MOVES
 
