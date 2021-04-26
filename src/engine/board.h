@@ -13,6 +13,8 @@ CHEDDAR_START
  */
 typedef unsigned long long BitBoard;
 
+constexpr BitBoard EMPTY_BOARD = 0ULL;
+
 /**
  * A set of 12 bitboards that represent a chess position.
  */
@@ -74,6 +76,16 @@ inline BitBoard get_black_pieces(const Position pos) {
     return pos.blackPawns | pos.blackKnights | pos.blackBishops | pos.blackRooks | pos.blackQueens | pos.blackKing;
 }
 
+/**
+ * Returns a bitboard of all pieces in the given position.
+ *
+ * @param pos a Position of bitboards
+ *
+ * @return a bitboard
+ */
+inline BitBoard get_all_pieces(Position pos) {
+    return get_white_pieces(pos) | get_black_pieces(pos);
+}
 
 Position from_fen(std::string fen);
 
