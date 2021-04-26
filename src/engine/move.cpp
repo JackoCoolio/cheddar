@@ -5,6 +5,10 @@ using namespace Cheddar;
 // returns the last 16 bits, because those are the only bits that are relevant
 #define MASK_IMPORTANT_BITS(move) (move & 0xffff)
 
+Move::Move() {
+    m_move = 0;
+}
+
 Move::Move(unsigned int to, unsigned int from, unsigned int flags) {
     m_move = ((flags & 0xf) << 12) | ((from & 0x3f) << 6) | (to & 0x3f);
 }

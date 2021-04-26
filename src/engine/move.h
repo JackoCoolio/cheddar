@@ -28,6 +28,11 @@ public:
     };
 
     /**
+     * A default constructor that sets everything to zero.
+     */
+    Move();
+
+    /**
      * Constructs a move from the specified TO square to the specified FROM square with flags.
      *
      * @param to a 6-bit integer index
