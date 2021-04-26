@@ -33,6 +33,14 @@ public:
     Move();
 
     /**
+     * Constructs a quiet move from the specified TO square to the specified FROM square.
+     *
+     * @param to a 6-bit integer index
+     * @param from a 6-bit integer index
+     */
+    Move(unsigned int to, unsigned int from);
+
+    /**
      * Constructs a move from the specified TO square to the specified FROM square with flags.
      *
      * @param to a 6-bit integer index
