@@ -31,41 +31,49 @@ constexpr BitBoard EIGHTH_RANK  = 0xff00000000000000;
 
 BitBoard north_occl(const BitBoard board, const BitBoard open);
 BitBoard north_one(const BitBoard board);
+BitBoard north_blocker(const BitBoard board, const BitBoard open);
 
 // SOUTH
 
 BitBoard south_occl(const BitBoard board, const BitBoard open);
 BitBoard south_one(const BitBoard board);
+BitBoard south_blocker(const BitBoard board, const BitBoard open);
 
 // EAST
 
 BitBoard east_occl(const BitBoard board, const BitBoard open);
 BitBoard east_one(const BitBoard board);
+BitBoard east_blocker(const BitBoard board, const BitBoard open);
 
 // WEST
 
 BitBoard west_occl(const BitBoard board, const BitBoard open);
 BitBoard west_one(const BitBoard board);
+BitBoard west_blocker(const BitBoard board, const BitBoard open);
 
 // NORTH EAST
 
 BitBoard ne_occl(const BitBoard board, const BitBoard open);
 BitBoard ne_one(const BitBoard board);
+BitBoard ne_blocker(const BitBoard board, const BitBoard open);
 
 // SOUTH EAST
 
 BitBoard se_occl(const BitBoard board, const BitBoard open);
 BitBoard se_one(const BitBoard board);
+BitBoard se_blocker(const BitBoard board, const BitBoard open);
 
 // SOUTH WEST
 
 BitBoard sw_occl(const BitBoard board, const BitBoard open);
 BitBoard sw_one(const BitBoard board);
+BitBoard sw_blocker(const BitBoard board, const BitBoard open);
 
 // NORTH WEST
 
 BitBoard nw_occl(const BitBoard board, const BitBoard open);
 BitBoard nw_one(const BitBoard board);
+BitBoard nw_blocker(const BitBoard board, const BitBoard open);
 
 // KNIGHT MOVES
 
