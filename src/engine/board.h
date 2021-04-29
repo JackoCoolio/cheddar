@@ -14,6 +14,10 @@ CHEDDAR_START
 typedef unsigned long long BitBoard;
 
 constexpr BitBoard EMPTY_BOARD = 0ULL;
+constexpr BitBoard WHITE_KING_CASTLE = 0x0000000000000040;
+constexpr BitBoard WHITE_QUEEN_CASTLE = 0x0000000000000004;
+constexpr BitBoard BLACK_KING_CASTLE = 0x4000000000000000;
+constexpr BitBoard BLACK_QUEEN_CASTLE = 0x0400000000000000;
 
 /**
  * A set of 12 bitboards that represent a chess position.
@@ -34,7 +38,7 @@ typedef struct Position {
     BitBoard blackKing;
 
     unsigned int enPassant;
-    unsigned int castles;
+    BitBoard castles;
     Color turn;
 } Position;
 

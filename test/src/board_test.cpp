@@ -38,3 +38,21 @@ TEST(Board, alg_to_index) {
     ASSERT_EQ(alg_to_index("h1"), 7);
     ASSERT_EQ(alg_to_index("-"), 64); // invalid index
 }
+
+TEST(Board, castles) {
+    // all castles
+    Position pos = from_fen("rnb1kb1r/pp3p1p/2p1pnp1/q2p4/2PP4/2N1PN2/PP2BPPP/R1BQK2R w KQkq - 0 1");
+    ASSERT_EQ(pos.castles, WHITE_KING_CASTLE | WHITE_QUEEN_CASTLE | BLACK_KING_CASTLE | BLACK_QUEEN_CASTLE);
+
+    // one castle missing
+    pos = from_fen("rnb1kb1r/pp3p1p/2p1pnp1/q2p4/2PP4/2N1PN2/PP2BPPP/R1BQK2R w Kkq - 0 1");
+    ASSERT_EQ(pos.castles, WHITE_KING_CASTLE | BLACK_KING_CASTLE | BLACK_QUEEN_CASTLE);
+
+    // no castles
+    pos = from_fen("rnb1kb1r/pp3p1p/2p1pnp1/q2p4/2PP4/2N1PN2/PP2BPPP/R1BQK2R w - - 0 1");
+    ASSERT_EQ(pos.castles, 0);
+
+    // a bunch of junk characters
+    pos = from_fen("rnb1kb1r/pp3p1p/2p1pnp1/q2p4/2PP4/2N1PN2/PP2BPPP/R1BQK2R w asdfhfdieERTYTREB - 0 1");
+    ASSERT_EQ(pos.castles, 0);
+}

@@ -34,6 +34,7 @@ unsigned int fen_to_bb_index(int i, int skip_offset) {
 Position from_fen(std::string fen) {
     Position pos = {}; // set to zero
     pos.enPassant = 64;
+    pos.castles = 0;
     int stage = 0;
     int skip_offset = 0;
     int ep_file = -1;
@@ -87,7 +88,15 @@ Position from_fen(std::string fen) {
                     pos.turn = White;
                 }
             } else if (stage == 2) {
-                // castling
+                if (c == 'k') {
+                    pos.castles |= BLACK_KING_CASTLE;
+                } else if (c == 'K') {
+                    pos.castles |= WHITE_KING_CASTLE;
+                } else if (c == 'q') {
+                    pos.castles |= BLACK_QUEEN_CASTLE;
+                } else if (c == 'Q') {
+                    pos.castles |= WHITE_QUEEN_CASTLE;
+                }
             } else if (stage == 3) {
                 if (c == '-') continue;
 
