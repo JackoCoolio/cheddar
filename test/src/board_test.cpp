@@ -39,6 +39,13 @@ TEST(Board, alg_to_index) {
     ASSERT_EQ(alg_to_index("-"), 64); // invalid index
 }
 
+TEST(Board, index_to_alg) {
+    ASSERT_STREQ(index_to_alg(0).c_str(), "a1");
+    ASSERT_STREQ(index_to_alg(56).c_str(), "a8");
+    ASSERT_STREQ(index_to_alg(63).c_str(), "h8");
+    ASSERT_STREQ(index_to_alg(7).c_str(), "h1");
+}
+
 TEST(Board, castles) {
     // all castles
     Position pos = from_fen("rnb1kb1r/pp3p1p/2p1pnp1/q2p4/2PP4/2N1PN2/PP2BPPP/R1BQK2R w KQkq - 0 1");

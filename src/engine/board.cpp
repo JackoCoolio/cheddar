@@ -124,4 +124,18 @@ unsigned int alg_to_index(const std::string alg) {
     return  rank * 8 + file;
 }
 
+std::string index_to_alg(const unsigned int index) {
+    int rank = index / 8;
+    int file = index % 8;
+
+    char rank_char = '1' + rank;
+    char file_char = 'a' + file;
+
+    std::string out = "";
+    out += file_char;
+    out += rank_char;
+
+    return out;
+}
+
 CHEDDAR_END

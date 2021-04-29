@@ -94,6 +94,7 @@ inline BitBoard get_all_pieces(Position pos) {
 Position from_fen(std::string fen);
 
 unsigned int alg_to_index(const std::string alg);
+std::string index_to_alg(const unsigned int index);
 
 CHEDDAR_END
 
