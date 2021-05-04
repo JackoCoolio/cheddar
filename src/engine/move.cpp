@@ -58,3 +58,7 @@ bool Move::is_capture() const {
 unsigned int Move::get_butterfly_index() const {
     return m_move & 0xfff; // return last 12 bits
 }
+
+void Move::flip() {
+    m_move = ((63 - get_to()) & 0x3f) | ((63 - get_from()) & 0x3f) << 6 | get_flags() << 12;
+}

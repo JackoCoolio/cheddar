@@ -42,6 +42,12 @@ typedef struct Position {
     Color turn;
 } Position;
 
+BitBoard mirror_bitboard(const BitBoard board);
+
+Position mirror_position(const Position pos);
+
+std::string to_fen(const Position pos);
+
 inline void set_bit(BitBoard &board, unsigned int index) {
     board |= 0x1ULL << index;
 }

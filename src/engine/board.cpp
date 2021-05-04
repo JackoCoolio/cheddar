@@ -3,6 +3,37 @@
 
 CHEDDAR_START
 
+BitBoard mirror_bitboard(const BitBoard board) {
+    const BitBoard k1 = 0x00ff00ff00ff00ff;
+    const BitBoard k2 = 0x0000ffff0000ffff;
+    BitBoard out = board;
+
+    out = ((out >>  8) & k1) | ((out & k1) <<  8);
+    out = ((out >> 16) & k2) | ((out & k2) << 16);
+    out = ( out >> 32)       | ( out       << 32);
+    return out;
+}
+
+Position mirror_position(const Position pos) {
+    return {
+        mirror_bitboard(pos.blackPawns),
+        mirror_bitboard(pos.blackKnights),
+        mirror_bitboard(pos.blackBishops),
+        mirror_bitboard(pos.blackRooks),
+        mirror_bitboard(pos.blackQueens),
+        mirror_bitboard(pos.blackKing),
+        mirror_bitboard(pos.whitePawns),
+        mirror_bitboard(pos.whiteKnights),
+        mirror_bitboard(pos.whiteBishops),
+        mirror_bitboard(pos.whiteRooks),
+        mirror_bitboard(pos.whiteQueens),
+        mirror_bitboard(pos.whiteKing),
+        pos.enPassant ^ 56,
+        mirror_bitboard(pos.castles),
+        1 - pos.turn
+    };
+}
+
 std::bitset<64> get_bits(const BitBoard board) {
     return std::bitset<64>(board);
 }
@@ -111,6 +142,104 @@ Position from_fen(std::string fen) {
     }
 
     return pos;
+}
+
+std::string to_fen(const Position pos) {
+    std::string out = "";
+
+    // piece section
+    unsigned int blanks = 0;
+    for (int i = 0; i < 64; i++) {
+        int index = fen_to_bb_index(i, 0);
+
+        // check if the blanks count needs to be printed
+        if (blanks != 0) {
+            if (get_bit(get_all_pieces(pos), index) || i % 8 == 0) {
+                out += '0' + blanks;
+                blanks = 0;
+            }
+        }
+
+        if (i % 8 == 0 && i != 0) {
+            out += '/';
+        }
+
+        // print the piece char or increment blanks count
+        if (get_bit(pos.whitePawns, index)) {
+            out += 'P';
+        } else if (get_bit(pos.whiteKnights, index)) {
+            out += 'N';
+        } else if (get_bit(pos.whiteBishops, index)) {
+            out += 'B';
+        } else if (get_bit(pos.whiteRooks, index)) {
+            out += 'R';
+        } else if (get_bit(pos.whiteQueens, index)) {
+            out += 'Q';
+        } else if (get_bit(pos.whiteKing, index)) {
+            out += 'K';
+        } else if (get_bit(pos.blackPawns, index)) {
+            out += 'p';
+        } else if (get_bit(pos.blackKnights, index)) {
+            out += 'n';
+        } else if (get_bit(pos.blackBishops, index)) {
+            out += 'b';
+        } else if (get_bit(pos.blackRooks, index)) {
+            out += 'r';
+        } else if (get_bit(pos.blackQueens, index)) {
+            out += 'q';
+        } else if (get_bit(pos.blackKing, index)) {
+            out += 'k';
+        } else {
+            blanks++;
+        }
+    }
+
+    if (blanks > 0) {
+        out += '0' + blanks;
+    }
+
+    out += ' ';
+
+    // turn section
+    if (pos.turn == White) {
+        out += 'w';
+    } else {
+        out += 'b';
+    }
+
+    out += ' ';
+
+    // castles section
+    if (!pos.castles) {
+        out += '-';
+    } else {
+        if (WHITE_KING_CASTLE & pos.castles) {
+            out += 'K';
+        }
+        if (WHITE_QUEEN_CASTLE & pos.castles) {
+            out += 'Q';
+        }
+        if (BLACK_KING_CASTLE & pos.castles) {
+            out += 'k';
+        }
+        if (BLACK_QUEEN_CASTLE & pos.castles) {
+            out += 'q';
+        }
+    }
+
+    out += ' ';
+
+    // en passant
+    if (pos.enPassant > 63) { // unsigned, so don't need to check for < 0
+        out += '-';
+    } else {
+        out += index_to_alg(pos.enPassant);
+    }
+
+    // TODO: implement turn counts
+    out += " 0 0";
+
+    return out;
 }
 
 unsigned int alg_to_index(const std::string alg) {

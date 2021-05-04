@@ -63,3 +63,19 @@ TEST(Board, castles) {
     pos = from_fen("rnb1kb1r/pp3p1p/2p1pnp1/q2p4/2PP4/2N1PN2/PP2BPPP/R1BQK2R w asdfhfdieERTYTREB - 0 1");
     ASSERT_EQ(pos.castles, 0);
 }
+
+TEST(Board, mirror_bitboard) {
+    BitBoard board = 0x00000000000000ff;
+    ASSERT_EQ(mirror_bitboard(board), 0xff00000000000000);
+}
+
+TEST(Board, to_fen) {
+    FenMap fens = get_test_fens();
+
+    for (std::pair<std::string, unsigned int> pair : fens) {
+        Position pos = from_fen(pair.first);
+        std::string output_fen = to_fen(pos);
+
+        ASSERT_STREQ(pair.first.c_str(), output_fen.c_str());
+    }
+}

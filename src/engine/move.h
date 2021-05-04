@@ -102,6 +102,11 @@ public:
      */
     unsigned int get_butterfly_index() const;
 
+    /**
+     * Flips across the 4th and 5th rank axis.
+     */
+    void flip();
+
 protected:
 
     // m_move is interpreted like so:
