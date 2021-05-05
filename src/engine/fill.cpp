@@ -31,7 +31,7 @@ BitBoard north_one(const BitBoard board) {
 }
 
 BitBoard north_blocker(const BitBoard board, const BitBoard open) {
-    return ~open & north_occl(board, open);
+    return ~open & north_attacks(board, open);
 }
 
 BitBoard south_occl(const BitBoard board, const BitBoard open) {
