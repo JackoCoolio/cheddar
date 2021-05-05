@@ -1,15 +1,22 @@
 #ifndef GEN_H
 #define GEN_H
 
-#include "util.h"
+#include <array>
+
+#include "movelist.h"
 #include "board.h"
 #include "core.h"
 
 CHEDDAR_START
 
-BitBoard generate_pawn_moves(const Position pos, Color color);
-
-BitBoard generate_knight_moves(const Position pos, Color color);
+/**
+ * Generate a list of legal moves for the player whose pawns move UP the board.
+ *
+ * @param pos the Position to determine moves for
+ *
+ * @return a MoveList of maximum capacity 256
+ */
+MoveList generate_legal_moves(const Position pos);
 
 CHEDDAR_END
 
