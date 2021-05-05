@@ -1,8 +1,11 @@
+#ifndef MOVE_H
+#define MOVE_H
+
 /**
  * Adapted from https://www.chessprogramming.org/Encoding_Moves
  */
 
-#include <core.h>
+#include "core.h"
 
 CHEDDAR_START
 
@@ -23,6 +26,19 @@ public:
         ROOK_PROMOTION = 0x2,
         QUEEN_PROMOTION = 0x3
     };
+
+    /**
+     * A default constructor that sets everything to zero.
+     */
+    Move();
+
+    /**
+     * Constructs a quiet move from the specified TO square to the specified FROM square.
+     *
+     * @param to a 6-bit integer index
+     * @param from a 6-bit integer index
+     */
+    Move(unsigned int to, unsigned int from);
 
     /**
      * Constructs a move from the specified TO square to the specified FROM square with flags.
@@ -86,6 +102,11 @@ public:
      */
     unsigned int get_butterfly_index() const;
 
+    /**
+     * Flips across the 4th and 5th rank axis.
+     */
+    void flip();
+
 protected:
 
     // m_move is interpreted like so:
@@ -96,3 +117,5 @@ protected:
 };
 
 CHEDDAR_END
+
+#endif

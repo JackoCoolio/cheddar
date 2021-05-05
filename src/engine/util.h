@@ -1,6 +1,13 @@
-#include <core.h>
+#ifndef UTIL_H
+#define UTIL_H
+
+#include "core.h"
 
 CHEDDAR_START
+
+typedef unsigned int Color;
+constexpr Color White = 0;
+constexpr Color Black = 1;
 
 /**
  * Converts a rank and file into a 6-bit integer.
@@ -37,3 +44,5 @@ inline unsigned int index_to_file(unsigned int index) {
 }
 
 CHEDDAR_END
+
+#endif

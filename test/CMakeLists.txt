@@ -5,9 +5,12 @@ set(CMAKE_CXX_STANDARD 17)
 set(SOURCE
     main.cpp
     src/move_test.cpp
+    src/gen_test.cpp
+    src/board_test.cpp
+    src/fill_test.cpp
 )
 
-include_directories(${CHEDDAR_HEADERS_DIR})
+include_directories(${ENGINE_HEADERS_DIR})
 
 include(FetchContent)
 FetchContent_Declare(

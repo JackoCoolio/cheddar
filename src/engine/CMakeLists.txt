@@ -6,10 +6,15 @@ set(HEADERS
     move.h
     util.h
     core.h
+    gen.h
+    fill.h
 )
 
 set(SOURCE
+    board.cpp
     move.cpp
+    gen.cpp
+    fill.cpp
 )
 
 add_library(engine SHARED STATIC ${SOURCE})

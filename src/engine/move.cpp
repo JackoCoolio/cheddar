@@ -5,6 +5,14 @@ using namespace Cheddar;
 // returns the last 16 bits, because those are the only bits that are relevant
 #define MASK_IMPORTANT_BITS(move) (move & 0xffff)
 
+Move::Move() {
+    m_move = 0;
+}
+
+Move::Move(unsigned int to, unsigned int from) {
+    m_move = ((from & 0x3f) << 6) | (to & 0x3f);
+}
+
 Move::Move(unsigned int to, unsigned int from, unsigned int flags) {
     m_move = ((flags & 0xf) << 12) | ((from & 0x3f) << 6) | (to & 0x3f);
 }
@@ -49,4 +57,8 @@ bool Move::is_capture() const {
 
 unsigned int Move::get_butterfly_index() const {
     return m_move & 0xfff; // return last 12 bits
+}
+
+void Move::flip() {
+    m_move = ((63 - get_to()) & 0x3f) | ((63 - get_from()) & 0x3f) << 6 | get_flags() << 12;
 }
