@@ -5,7 +5,7 @@
  * Adapted from https://www.chessprogramming.org/Encoding_Moves
  */
 
-#include "core.h"
+#include "../core.h"
 
 CHEDDAR_START
 

@@ -1,7 +1,7 @@
 #ifndef BOARD_H
 #define BOARD_H
 
-#include "core.h"
+#include "../core.h"
 #include "util.h"
 #include <string>
 #include <bitset>

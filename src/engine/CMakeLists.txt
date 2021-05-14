@@ -5,7 +5,6 @@ set(HEADERS
     board.h
     move.h
     util.h
-    core.h
     gen.h
     fill.h
 )

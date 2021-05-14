@@ -3,7 +3,7 @@
 
 #include <array>
 #include "move.h"
-#include "core.h"
+#include "../core.h"
 
 CHEDDAR_START
 

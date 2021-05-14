@@ -1,7 +1,7 @@
 #ifndef UTIL_H
 #define UTIL_H
 
-#include "core.h"
+#include "../core.h"
 
 CHEDDAR_START
 

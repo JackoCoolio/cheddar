@@ -5,7 +5,7 @@
 
 #include "movelist.h"
 #include "board.h"
-#include "core.h"
+#include "../core.h"
 
 CHEDDAR_START
 
