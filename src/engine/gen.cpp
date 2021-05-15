@@ -284,7 +284,7 @@ MoveList generate_legal_moves(const Position _pos) {
                 move_list.append(to, from, Move::Flags::PROMOTION | Move::Flags::BISHOP_PROMOTION | capture_flag);
                 move_list.append(to, from, Move::Flags::PROMOTION | Move::Flags::ROOK_PROMOTION   | capture_flag);
                 move_list.append(to, from, Move::Flags::PROMOTION | Move::Flags::QUEEN_PROMOTION  | capture_flag);
-            } else if (target & pos.enPassant != 0) { // en passant
+            } else if ((target & pos.enPassant) != 0) { // en passant
                 // we know it's a capture, so ignore capture_flag
                 move_list.append(to, from, Move::Flags::EN_PASSANT | Move::Flags::CAPTURE);
             } else {

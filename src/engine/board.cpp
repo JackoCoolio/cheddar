@@ -69,7 +69,7 @@ Position from_fen(std::string fen) {
     int stage = 0;
     int skip_offset = 0;
     int ep_file = -1;
-    for (int i = 0; i < fen.length(); i++) {
+    for (size_t i = 0; i < fen.length(); i++) {
         char c = fen.at(i);
 
         if (c == ' ') {

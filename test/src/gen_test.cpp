@@ -9,7 +9,7 @@ using namespace Cheddar;
 using namespace std;
 
 void print_move_list(MoveList list) {
-    for (int i = 0; i < list.count; i++) {
+    for (unsigned int i = 0; i < list.count; i++) {
         Move &move = list.moves[i];
         std::cout << move.get_from() << "\t" << move.get_to() << "\t" << index_to_alg(move.get_from()) << index_to_alg(move.get_to()) << std::endl;
     }

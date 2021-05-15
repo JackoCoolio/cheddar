@@ -11,7 +11,7 @@ CHEDDAR_START
 class UI {
 private:
     bool m_isready = true;
-    Position m_position = {0};
+    Position m_position;
     void unknown_error(std::string command);
 public:
     /**
