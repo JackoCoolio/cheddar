@@ -3,3 +3,7 @@ include/
 lib/
 build/
 .vscode/
+
+# scripts
+*.sh
+*.bat
